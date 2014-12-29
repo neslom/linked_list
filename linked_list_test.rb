@@ -61,7 +61,7 @@ class IterativeLinkedListTest < Minitest::Test
   end
 
   def test_it_returns_nil_if_nothing_to_delete
-    assert_nil list.delete("hello")
+    assert_nil list.delete("world")
   end
 
   def test_it_deletes_a_solo_node
