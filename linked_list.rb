@@ -16,6 +16,7 @@ class IterativeLinkedList
 	end
 
 	def push(data)
+		current = @head
 		@list_count += 1
 		node = Node.new(data)
 		if @head.nil?
@@ -25,6 +26,8 @@ class IterativeLinkedList
 		  @tail = @head
 		else
 			# if head has a value and node.next is nil, 
+			# while current.next != nil
+			# 	current.next.
 			@tail.next = node
 			@tail = node
 		end
@@ -53,25 +56,21 @@ class IterativeLinkedList
 
 	def delete(data)
 		current = @head
-		last = @tail
+		#last = @tail
 		return nil if current.nil?
 		if current.data == data
 			@head = @head.next
 			@list_count -= 1
-		elsif last.data == data
-			@tail = nil
-			@list_count -= 1
 		else
 		  while current.next != nil
-
-		  	if current.next.data == data && current.next.next == nil
-		  		current.next = nil
-		  		@list_count -= 1
-		  	elsif current.next.data == data
+		  	if current.next.data == data
 		  		current.next = current.next.next
 		  		@list_count -= 1
 		  	else
-		  		break
+		  		# this key line is necessary to prevent neverending loop
+		  		# if you don't set current = current.next
+		  		# the loop never moves off of the initial node
+		  		current = current.next
 		  	end
 		  end
 		end
